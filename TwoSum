@@ -1,0 +1,66 @@
+TWO SUM PROBLEM:
+Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+
+Solution:
+import java.util.*;
+import java.lang.*;
+
+public class Solution {
+//     /*Bruteforce*/
+//     public int[] twoSum(int[] nums, int target) {
+//         int result[] = new int[2];
+//         for(int i = 0; i< nums.length; i++){
+//             for(int j=i+1; j < nums.length; j++){
+//                 if(target - nums[i] == nums[j]){
+//                     result[0] = i;
+//                     result[1] = j;
+//                 }
+//             }
+//     }return result;
+// }
+    
+    // Using one pass hashMap
+    public static void twoSum(int[] nums, int target){
+        int result[] = new int[2];
+        Map<Integer, Integer> hashmap = new HashMap<Integer, Integer>();
+        
+        for(int i =0; i < nums.length; i++){
+            
+            if(hashmap.containsKey(target - nums[i])){
+                    result[1]=i;
+                    result[0]=hashmap.get(target-nums[i]); 
+            }else
+                hashmap.put(nums[i],i);
+
+        }
+        System.out.println(result[0]+"and"+result[1]);
+    }
+    
+    public static void main(String args[]){
+        
+        Scanner sc = new Scanner(System.in);
+        int result[] = new int[2];
+
+        
+        System.out.println("Enter the size of array! : ");
+        int n = sc.nextInt();
+        
+        int nums[] = new int[n];
+        System.out.println("Enter the array! : ");
+        
+        for(int i = 0; i< n; i++){
+            nums[i] = sc.nextInt();
+        }
+        
+        System.out.println("Enter the target : ");
+        int target = sc.nextInt();
+
+        twoSum(nums,target);
+        }
+}
+
+
+
